@@ -1,10 +1,18 @@
 class Words
   constructor: (sentence)->
-    words = sentence.toLowerCase().match /\w+/g
-    @count = words.reduce (count, word)->
-      count[word] ?= 0
-      count[word]++
-      count
-    , {}
+    # private functions
+    getWordCountDictionary = ->
+      convertWordArrayToDictionary getWordArray()
+    getWordArray = ->
+      sentence.toLowerCase().match /\w+/g
+    convertWordArrayToDictionary = (wordArray)->
+      wordArray.reduce addWordInstanceToDictionary, {}
+    addWordInstanceToDictionary = (dict, word)->
+      dict[word] ?= 0
+      dict[word]++
+      dict
+
+    # define count property
+    Object.defineProperty @, 'count', get: getWordCountDictionary
 
 module.exports = Words
