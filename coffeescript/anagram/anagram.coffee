@@ -1,8 +1,9 @@
 class Anagram
   constructor: (@word)->
   match: (list)->
-    sortedWord = @word.toLowerCase().split('').sort().join('')
+    getAlphabetizedString = (str)-> str.split('').sort().join('')
+    alphabetizedWord = getAlphabetizedString @word.toLowerCase()
     list.map((item)->item.toLowerCase()).filter (item)=>
-      sortedWord == item.split('').sort().join('') && @word != item
+      alphabetizedWord == getAlphabetizedString(item) && @word.toLowerCase() != item
 
 module.exports = Anagram
