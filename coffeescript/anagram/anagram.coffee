@@ -2,8 +2,10 @@ class Anagram
   constructor: (@word)->
   match: (list)->
     getAlphabetizedString = (str)-> str.split('').sort().join('')
-    alphabetizedWord = getAlphabetizedString @word.toLowerCase()
-    list.map((item)->item.toLowerCase()).filter (item)=>
-      alphabetizedWord == getAlphabetizedString(item) && @word.toLowerCase() != item
+    getLowercasedList = (lst)-> lst.map((item)->item.toLowerCase())
+    lowercasedWord = @word.toLowerCase()
+    alphabetizedWord = getAlphabetizedString lowercasedWord
+    getLowercasedList(list).filter (item)=>
+      alphabetizedWord == getAlphabetizedString(item) && lowercasedWord != item
 
 module.exports = Anagram
