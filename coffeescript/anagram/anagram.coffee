@@ -5,7 +5,7 @@ class Anagram
     lowercasedList = list.map (item)-> item.toLowerCase()
     lowercasedWord = @word.toLowerCase()
     alphabetizedWord = getAlphabetizedString lowercasedWord
-    lowercasedList.filter (item)=>
+    lowercasedList.filter (item)->
       lowercasedWord != item && alphabetizedWord == getAlphabetizedString item
 
 module.exports = Anagram
