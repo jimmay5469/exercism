@@ -1,7 +1,7 @@
 class Trinary
   constructor: (@stringTrinary)->
   isValid: ->
-    @stringTrinary.match /[012]+/
+    @stringTrinary.match /[0-2]+/
   toDecimal: ->
     return 0 unless @isValid()
     @stringTrinary.split('').reverse().reduce (sum, item, index)->
