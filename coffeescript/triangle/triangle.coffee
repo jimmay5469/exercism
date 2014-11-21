@@ -1,11 +1,12 @@
 class Triangle
-  constructor: (@sides...)->
-    throw 'negative sides are illegal' if @sides.filter((item)->item > 0).length != 3
-    throw 'violation of triangle inequality' unless @sides.sort()[2] < @sides.sort()[0] + @sides.sort()[1]
+  constructor: (sides...)->
+    @sides = sides.sort()
+    throw 'negative sides are illegal' unless @sides[0] > 0
+    throw 'violation of triangle inequality' unless @sides[0] + @sides[1] > @sides[2]
+  uniqueSidesCount: ->
+    @sides.filter((item, index)=> index == @sides.indexOf item).length
   kind: ->
     mapping = ['equilateral', 'isosceles', 'scalene']
-    uniqueSideLengths = @sides.filter (item, index)=>
-      index == @sides.indexOf item
-    mapping[uniqueSideLengths.length-1]
+    mapping[@uniqueSidesCount()-1]
 
 module.exports = Triangle
