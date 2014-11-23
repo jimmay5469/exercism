@@ -1,19 +1,11 @@
 class Bst
   constructor: (@data)->
   insert: (value)->
-    if value > @data
-      if @right
-        @right.insert(value)
-      else
-        @right = new Bst(value)
-    else
-      if @left
-        @left.insert(value)
-      else
-        @left = new Bst(value)
+    subtree = if value > @data then 'right' else 'left'
+    @[subtree]?.insert(value) ? @[subtree] = new Bst value
   each: (fcn)->
-    @left.each(fcn) if @left
-    fcn(@data)
-    @right.each(fcn) if @right
+    @left?.each fcn
+    fcn @data
+    @right?.each fcn
 
 module.exports = Bst
