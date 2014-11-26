@@ -1,5 +1,5 @@
-class Prime
-  @nth: (input)->
+module.exports =
+  nth: (input)->
     throw 'Prime is not possible' if input < 1
 
     primeNumbers = [2]
@@ -16,5 +16,3 @@ class Prime
       currentNumber += 2
 
     primeNumbers.pop()
-
-module.exports = Prime
