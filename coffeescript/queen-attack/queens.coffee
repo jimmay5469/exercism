@@ -1,7 +1,7 @@
 class Queens
-  constructor: (@input={})->
-    @white = @input.white ? [0,3]
-    @black = @input.black ? [7,3]
+  constructor: (input={})->
+    @white = input.white ? [0,3]
+    @black = input.black ? [7,3]
     throw 'Queens cannot share the same space' if "#{@white}" == "#{@black}"
   toString: ->
     board = [0..7].map -> [0..7].map -> 'O'
