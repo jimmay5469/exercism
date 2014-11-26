@@ -8,7 +8,7 @@ module.exports =
       for prime in primeNumbers
         break if prime>Math.sqrt(number)
         return false if number % prime == 0
-      return true
+      true
 
     currentNumber = 3
     while primeNumbers.length < input
