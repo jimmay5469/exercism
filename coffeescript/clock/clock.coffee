@@ -1,18 +1,27 @@
 class Clock
   @at: (hour, minute)->
     new @(hour, minute)
-  constructor: (@hour=0, @minute=0)->
+  constructor: (hour=0, minute=0)->
+    @totalMinutes = hour * 60 + minute
+    @normalize()
+  normalize: ->
+    @totalMinutes -= 24 * 60 while @totalMinutes > 24 * 60
+    @totalMinutes += 24 * 60 while @totalMinutes < 0
   toString: ->
-    hourString = if @hour > 9 then @hour.toString() else "0#{@hour}"
-    minuteString = if @minute > 9 then @minute.toString() else "0#{@minute}"
+    minute = @totalMinutes % 60
+    hour = (@totalMinutes - minute) / 60
+    hourString = if hour > 9 then hour.toString() else "0#{hour}"
+    minuteString = if minute > 9 then minute.toString() else "0#{minute}"
     "#{hourString}:#{minuteString}"
   plus: (minutes)->
-    totalMinutes = @minute + minutes
-    @minute = totalMinutes % 60
-    @hour += (totalMinutes - @minute) / 60
-    @hour = @hour % 24
+    @totalMinutes += minutes
+    @normalize()
     @
   minus: (minutes)->
-    @plus -1 * minutes
+    @totalMinutes -= minutes
+    @normalize()
+    @
+  equals: (clock)->
+    @totalMinutes == clock.totalMinutes
 
 module.exports = Clock

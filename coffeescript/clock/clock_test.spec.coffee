@@ -21,27 +21,27 @@ describe "Clock", ->
     clock = Clock.at(23, 59).plus 2
     expect(clock.toString()).toEqual "00:01"
 
-  xit "can subtract minutes", ->
+  it "can subtract minutes", ->
     clock = Clock.at(10, 3).minus 3
     expect(clock.toString()).toEqual "10:00"
 
-  xit "can subtract over an hour", ->
+  it "can subtract over an hour", ->
     clock = Clock.at(10, 3).minus 30
     expect(clock.toString()).toEqual "09:33"
     clock = Clock.at(10, 3).minus 70
     expect(clock.toString()).toEqual "08:53"
 
-  xit "can know if it's equal to another clock", ->
+  it "can know if it's equal to another clock", ->
     clock1 = Clock.at(10, 3)
     clock2 = Clock.at(10, 3)
     expect(clock1.equals clock2).toBe true
 
-  xit "can know if it's not equal to another clock", ->
+  it "can know if it's not equal to another clock", ->
     clock1 = Clock.at(10, 3)
     clock2 = Clock.at(10, 4)
     expect(clock1.equals clock2).toBe false
 
-  xit "wraps around midnight backwards", ->
+  it "wraps around midnight backwards", ->
     clock = Clock.at(0, 3).minus 4
     expect(clock.toString()).toEqual "23:59"
 
