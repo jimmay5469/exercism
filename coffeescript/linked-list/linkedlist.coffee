@@ -32,6 +32,8 @@ class LinkedList
     @count--
     cursor = @start
     cursor = cursor.next while cursor.value != value
+    @start = @start.next if cursor == @start
+    @end = @end.prev if cursor == @end
     @linkItems cursor.prev, cursor.next
   countNodes: ->
     @count
