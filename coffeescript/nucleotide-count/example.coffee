@@ -5,7 +5,6 @@ class DNA
       nucleotideCounts
     , {A:0, T:0, C:0, G:0}
   count: (input)->
-    throw new Error('Invalid Nucleotide') unless input.match /^[ATCG]*$/
-    @nucleotideCounts[input]
+    @nucleotideCounts[input] ? throw new Error 'Invalid Nucleotide'
 
 module.exports = DNA
