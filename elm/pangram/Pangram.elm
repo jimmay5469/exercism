@@ -2,14 +2,17 @@ module Pangram exposing (..)
 
 import String exposing (toLower, concat)
 import List exposing (map, sort)
-import Regex exposing (regex, find, HowMany(All))
-import Set
+import Regex exposing (Regex, regex, find, HowMany(All))
+import Set exposing (fromList, toList)
+
+letters : Regex
+letters = regex "[a-z]"
 
 findLetters : String -> List String
-findLetters l = l |> find All (regex "[a-z]") |> map .match
+findLetters = find All letters >> map .match
 
 unique : List String -> List String
-unique l = l |> Set.fromList |> Set.toList
+unique = fromList >> toList
 
 isPangram : String -> Bool
 isPangram sentence =
