@@ -16,13 +16,13 @@ unique = fromList >> toList
 
 isPangram : String -> Bool
 isPangram sentence =
-  let 
-    sortedUniqueLowercasedLetters =
-      sentence
-        |> toLower
-        |> findLetters
-        |> unique
-        |> sort
-        |> concat
-  in
-    sortedUniqueLowercasedLetters == "abcdefghijklmnopqrstuvwxyz"
+    let
+        sortedUniqueLowercasedLetters =
+            sentence
+                |> toLower
+                |> findLetters
+                |> unique
+                |> sort
+                |> concat
+    in
+        sortedUniqueLowercasedLetters == "abcdefghijklmnopqrstuvwxyz"
